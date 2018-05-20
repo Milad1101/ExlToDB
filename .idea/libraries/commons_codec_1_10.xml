@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="commons-codec-1.10">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Lib/commons-codec-1.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Lib/commons-collections4-4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Lib/curvesapi-1.04.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Lib/junit-4.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Lib/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Lib/mysql-connector-java-5.1.41-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Lib/poi-3.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Lib/poi-examples-3.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Lib/poi-excelant-3.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Lib/poi-ooxml-3.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Lib/poi-ooxml-schemas-3.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Lib/poi-scratchpad-3.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Lib/xmlbeans-2.6.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

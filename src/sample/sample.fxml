@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <Pane prefHeight="486.0" prefWidth="539.0">
+         <children>
+            <Button fx:id="but" layoutX="231.0" layoutY="429.0" mnemonicParsing="false" onAction="#ButClicked" prefHeight="36.0" prefWidth="77.0" text="تحضير" />
+            <TextField fx:id="projectTitle" alignment="CENTER_RIGHT" disable="true" layoutX="46.0" layoutY="45.0" prefHeight="25.0" prefWidth="444.0" />
+            <CheckBox fx:id="softwareChB" disable="true" layoutX="429.0" layoutY="99.0" mnemonicParsing="false" text="برمجيات" />
+            <CheckBox fx:id="networksChB" disable="true" layoutX="343.0" layoutY="99.0" mnemonicParsing="false" text="شبكات" />
+            <CheckBox fx:id="aiChB" disable="true" layoutX="259.0" layoutY="99.0" mnemonicParsing="false" text="ذكاء" />
+            <Separator disable="true" layoutY="145.0" prefHeight="0.0" prefWidth="539.0" />
+            <Label layoutX="418.0" layoutY="28.0" text="عنوان المشروع:" />
+            <Label layoutX="449.0" layoutY="148.0" text="يتضمن المشروع:" />
+            <CheckBox fx:id="v1ChB" disable="true" layoutX="429.0" layoutY="180.0" mnemonicParsing="false" text="اتمتة" />
+            <CheckBox fx:id="v2ChB" disable="true" layoutX="307.0" layoutY="180.0" mnemonicParsing="false" text="ذكاء" />
+            <CheckBox fx:id="v3ChB" disable="true" layoutX="180.0" layoutY="180.0" mnemonicParsing="false" text="قواعد بيانات" />
+            <CheckBox fx:id="v4ChB" disable="true" layoutX="51.0" layoutY="180.0" mnemonicParsing="false" text="ويب" />
+            <CheckBox fx:id="v8ChB" disable="true" layoutX="51.0" layoutY="212.0" mnemonicParsing="false" text="اختبار نظم" />
+            <CheckBox fx:id="v7ChB" disable="true" layoutX="180.0" layoutY="212.0" mnemonicParsing="false" text="العاب" />
+            <CheckBox fx:id="v6ChB" disable="true" layoutX="307.0" layoutY="212.0" mnemonicParsing="false" text="دراسة نظم" />
+            <CheckBox fx:id="v5ChB" disable="true" layoutX="429.0" layoutY="212.0" mnemonicParsing="false" text="خوارزميات" />
+            <CheckBox fx:id="v12ChB" disable="true" layoutX="51.0" layoutY="243.0" mnemonicParsing="false" text="وسائط متعددة" />
+            <CheckBox fx:id="v11ChB" disable="true" layoutX="180.0" layoutY="243.0" mnemonicParsing="false" text="مقارنة نظم" />
+            <CheckBox fx:id="v10ChB" disable="true" layoutX="307.0" layoutY="243.0" mnemonicParsing="false" text="اندرويد" />
+            <CheckBox fx:id="v9ChB" disable="true" layoutX="429.0" layoutY="243.0" mnemonicParsing="false" text="امن معلومات" />
+            <CheckBox fx:id="v13ChB" disable="true" layoutX="429.0" layoutY="273.0" mnemonicParsing="false" text="تصميم نظم" />
+            <Separator layoutY="299.0" prefHeight="0.0" prefWidth="539.0" />
+            <CheckBox fx:id="v14ChB" disable="true" layoutX="307.0" layoutY="273.0" mnemonicParsing="false" text="محاكاة" />
+            <ChoiceBox fx:id="professorMenu" disable="true" layoutX="46.0" layoutY="95.0" prefHeight="25.0" prefWidth="185.0" />
+            <Button fx:id="excelReadBut" disable="true" layoutX="183.0" layoutY="381.0" mnemonicParsing="false" onAction="#addDataFromExcelFile" prefHeight="36.0" prefWidth="174.0" text="تضمين البيانات من ملف اكسل" />
+            <TextField fx:id="excelFilePathTf" disable="true" layoutX="56.0" layoutY="345.0" prefHeight="25.0" prefWidth="429.0" />
+            <Label layoutX="393.0" layoutY="327.0" text="مسار ملف الإكسل:" />
+            <ChoiceBox fx:id="fileTypeMenu" disable="true" layoutX="56.0" layoutY="315.0" prefHeight="25.0" prefWidth="185.0" />
+            <Label layoutX="245.0" layoutY="319.0" text="نوع الملف:" />
+         </children></Pane>
+   </children>
+</GridPane>
