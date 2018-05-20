@@ -130,4 +130,49 @@ public class DBManager {
         }
 
     }
+
+
+
+
+    public ArrayList<Questions> getQuestions(){
+        ArrayList<Questions> questions= new ArrayList<>();
+        try{
+            ResultSet questionsSet = con.createStatement().executeQuery("select * from questions");
+            int id;
+            String question;
+            ArrayList<String> answers;
+            int type;
+            while(questionsSet.next()){
+                 id = questionsSet.getInt(1);
+                 question = questionsSet.getString(2);
+                answers = findAnswersById(id);
+                type = questionsSet.getInt(3);
+                questions.add(new Questions(id,question,answers,type));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return questions;
+    }
+
+    private ArrayList<String> findAnswersById(int id){
+        ArrayList<String> answers= new ArrayList<>();
+
+        try {
+            ResultSet answersSet =  con.createStatement().executeQuery("select * from answers");
+            while(answersSet.next()){
+                int q_id= answersSet.getInt(3);
+                if (q_id==id){
+                    answers.add(answersSet.getString(2));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return answers;
+    }
+
 }
