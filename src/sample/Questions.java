@@ -13,7 +13,12 @@ public class Questions {
         this.question=question;
         this.answers=answers;
         this.type=type;
+    }
 
+    public Questions(String question,ArrayList<String> answers,int type){
+        this.question=question;
+        this.answers=answers;
+        this.type=type;
     }
 
 /////////////////////////GETTERS//////////////////////

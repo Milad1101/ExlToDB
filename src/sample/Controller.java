@@ -1,145 +1,72 @@
 package sample;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-import javax.swing.*;
-import java.lang.reflect.Array;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class Controller {
-
-
-
-    private ArrayList<CheckBox> typesChB = new ArrayList<>();
+public class Controller implements Initializable{
 
     private DBManager dbManager;
     private ExcelReader excelReader;
-    @FXML TextField projectTitle;
-
-
-    @FXML CheckBox softwareChB;
-    @FXML CheckBox networksChB;
-    @FXML CheckBox aiChB;
-
-
-    @FXML CheckBox v1ChB;
-    @FXML CheckBox v2ChB;
-    @FXML CheckBox v3ChB;
-    @FXML CheckBox v4ChB;
-    @FXML CheckBox v5ChB;
-    @FXML CheckBox v6ChB;
-    @FXML CheckBox v7ChB;
-    @FXML CheckBox v8ChB;
-    @FXML CheckBox v9ChB;
-    @FXML CheckBox v10ChB;
-    @FXML CheckBox v11ChB;
-    @FXML CheckBox v12ChB;
-    @FXML CheckBox v13ChB;
-    @FXML CheckBox v14ChB;
-
-
-    @FXML ChoiceBox professorMenu;
 
     @FXML Button excelReadBut;
     @FXML TextField excelFilePathTf;
-    @FXML Button but;
-    @FXML ChoiceBox fileTypeMenu;
+    @FXML Button addQuestionBut , addAnswerBut;
+    @FXML ChoiceBox fileTypeMenu , questionTargetMenu;
+    @FXML TextField questionText , answerText;
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        init();
+    }
 
     public void init(){
 
-        typesChB.add(v1ChB);
-        typesChB.add(v2ChB);
-        typesChB.add(v3ChB);
-        typesChB.add(v4ChB);
-        typesChB.add(v5ChB);
-        typesChB.add(v6ChB);
-        typesChB.add(v7ChB);
-        typesChB.add(v8ChB);
-        typesChB.add(v9ChB);
-        typesChB.add(v10ChB);
-        typesChB.add(v11ChB);
-        typesChB.add(v12ChB);
-        typesChB.add(v13ChB);
-        typesChB.add(v14ChB);
-
-
-        projectTitle.setDisable(false);
-        softwareChB.setDisable(false);
-        networksChB.setDisable(false);
-        aiChB.setDisable(false);
-        for(CheckBox cb : typesChB){
-            cb.setDisable(false);
-        }
-
-        professorMenu.setDisable(false);
         excelFilePathTf.setDisable(false);
         excelReadBut.setDisable(false);
         fileTypeMenu.setDisable(false);
-        String[] names = {"د.ناصرناصر","د.هلا نصار","د.محمد صبيح"};
+        questionText.setDisable(false);
+        addQuestionBut.setDisable(true);
 
-        professorMenu.setItems(FXCollections.observableArrayList(names));
+        questionTargetMenu.setItems(FXCollections.observableArrayList(DBManager.projectTypes));
+
         fileTypeMenu.setItems(FXCollections.observableArrayList(ExcelReader.fileTypes));
 
         dbManager = new DBManager();
-
-        but.setText("إضافة");
     }
 
-    public void ButClicked(){
-
-        if(but.getText().equals("تحضير")){
-
-            init();
-
-            return;
-
-        }
-
-        addProject();
-
-
+    public void addQuestionButClicked(){
+        addQuestion();
     }
 
 
-    public void addProject(){
+    public void addQuestion(){
 
+        int type = -1;
 
-        String title = "";
-        boolean[] dept = new  boolean[3];
-        boolean[] types = new boolean[14];
-        String prof = "";
-
-        title = projectTitle.getText();
-
-        if(softwareChB.isSelected()) dept[0] = true;
-        else dept[0] = false;
-
-        if(networksChB.isSelected()) dept[1] = true;
-        else dept[1] = false;
-
-        if(aiChB.isSelected()) dept[2] = true;
-        else dept[2] = false;
-
-
-        for(int i = 0; i < typesChB.size(); i++){
-            if(typesChB.get(i).isSelected()){
-                types[i] = true;
-            }else{
-                types[i] = false;
+        if(questionTargetMenu.getValue() != null) {
+            for (int i = 0; i < DBManager.projectTypes.length; i++) {
+                if (DBManager.projectTypes[i].equals(questionTargetMenu.getValue().toString())) {
+                    type = i;
+                    break;
+                }
             }
         }
 
+        Questions question = new Questions(questionText.getText(),answers,type);
 
-        prof = professorMenu.getValue().toString();
-
-
-        Project p = new Project(title,dept,types,prof);
-
-        dbManager.addProject(p);
-
+        dbManager.addQuestionAndAnswer(question);
+        answers = new ArrayList<>();
+        addAnswerBut.setDisable(false);
+        addQuestionBut.setDisable(true);
+        questionTargetMenu.setValue(null);
         clearAll();
     }
 
@@ -151,8 +78,11 @@ public class Controller {
         if(!fileTypeMenu.getValue().toString().equals(ExcelReader.fileTypes[2])){
             ArrayList<Project> projects = excelReader.getProjects();
 
+
             for (Project p : projects){
-                dbManager.addProject(p);
+
+
+              dbManager.addProject(p);
             }
         }else {
 
@@ -169,17 +99,23 @@ public class Controller {
     }
 
     private void clearAll(){
-        projectTitle.setText("");
-        softwareChB.setSelected(false);
-        networksChB.setSelected(false);
-        aiChB.setSelected(false);
+        questionText.setText("");
+        answerText.setText("");
+        excelFilePathTf.setText("");
+        fileTypeMenu.setValue(null);
+    }
 
-        for(CheckBox cb : typesChB){
-            cb.setSelected(false);
+    ArrayList<String>answers = new ArrayList<>();
+    public void addAnswerButClicked(ActionEvent event) {
+
+        if(answerText.getText().equals("")) return;
+        answers.add(answerText.getText());
+        answerText.setText("");
+
+        if(answers.size() >=2){
+            addAnswerBut.setDisable(true);
+            addQuestionBut.setDisable(false);
         }
 
-        excelFilePathTf.setText("");
-        professorMenu.setValue(null);
-        fileTypeMenu.setValue(null);
     }
 }

@@ -19,8 +19,6 @@ public class ExcelReader {
     XSSFSheet sheet;
     public static String[] fileTypes = new String[]{"ملف الاستبيان" , "ملف يوسف","ملف اسماء المشرفين"};
 
-    public static String[] projectTypes = {"اتمتة","ذكاء","قواعد بيانات","ويب","خوارزميات","دراسة نظام","ألعاب","اختبار نظام","أمن معلومات","اندرويد","مقارنة نظم","وسائط متعددة","تصميم نظام","محاكاة"};
-
 
 
 
@@ -100,6 +98,7 @@ public class ExcelReader {
             dept = new  boolean[3];
             types = new boolean[14];
             prof = "";
+            Professor professor = new Professor();
 
             row = sheet.getRow(i);
             int lastCellNum = row.getLastCellNum();
@@ -112,9 +111,13 @@ public class ExcelReader {
 
                 if(j == 2) fillTypes(types,cell.getStringCellValue().split(","));
 
-                if(j == 3) prof = cell.getStringCellValue();
+                if(j == 3){ prof = cell.getStringCellValue();
+                            professor.setName(prof);
+
+                }
             }
-            projects.add(new Project(title,dept,types,prof));
+
+            projects.add(new Project(title,dept,types,professor));
 
         }
 
@@ -141,6 +144,7 @@ public class ExcelReader {
             title = "";
             dept = new  boolean[3];
             types = new boolean[14];
+            Professor professor = new Professor();
             prof = "";
 
             row = sheet.getRow(i);
@@ -169,9 +173,11 @@ public class ExcelReader {
                 }
 
 
-                if (j == 18) prof = cell.getStringCellValue();
+                if (j == 18){ prof = cell.getStringCellValue();
+                professor.setName(prof);
+                }
             }
-            projects.add(new Project(title,dept,types,prof));
+            projects.add(new Project(title,dept,types,professor));
 
         }
 
@@ -198,7 +204,7 @@ public class ExcelReader {
                     }
                 }
 
-                 if (s.equals(projectTypes[i])) {
+                 if (s.equals(DBManager.projectTypes[i])) {
                     types[i] = true;
                     break;
                 }

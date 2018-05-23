@@ -21,7 +21,14 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+       launch(args);
+//        DBManager d = new DBManager();
+//        ArrayList<Project> p = d.getProjects();
+//
+//        for (Project pp : p) {
+//            pp.printProject();
+//        }
+
 
     }
 }

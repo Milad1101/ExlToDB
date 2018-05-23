@@ -5,13 +5,13 @@ public class Project {
     private String title;
     private boolean[] dept;
     private boolean[] types;
-    private String prof;
+    private Professor professor;
 
-    public Project(String title, boolean[] dept, boolean[] types, String prof) {
+    public Project(String title, boolean[] dept, boolean[] types, Professor professor) {
         this.title = title;
         this.dept = dept;
         this.types = types;
-        this.prof = prof;
+        this.professor=professor;
     }
 
     public String getTitle() {
@@ -38,12 +38,12 @@ public class Project {
         this.types = types;
     }
 
-    public String getProf() {
-        return prof;
+    public Professor getProf() {
+        return professor;
     }
 
-    public void setProf(String prof) {
-        this.prof = prof;
+    public void setProf(Professor professor) {
+        this.professor = professor;
     }
 
     public void printProject(){
@@ -54,7 +54,7 @@ public class Project {
         for(boolean value:types)
             System.out.print(value+" ");
 
-        System.out.println(prof);
+        System.out.println(professor.getName());
 
     }
 }

@@ -11,6 +11,17 @@ public class Professor {
         this.name = name;
     }
 
+    public Professor(){
+
+    }
+
+    public Professor(Professor professor){
+        this.id=professor.getId();
+        this.dept=professor.getDept();
+        this.name=professor.getName();
+    }
+
+
     public int getId() {
         return id;
     }
