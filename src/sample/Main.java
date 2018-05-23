@@ -25,6 +25,7 @@ public class Main extends Application {
 //        DBManager d = new DBManager();
 //        ArrayList<Project> p = d.getProjects();
 //
+
 //        for (Project pp : p) {
 //            pp.printProject();
 //        }
